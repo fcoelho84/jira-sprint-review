@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sprint Report</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <aside>
+    <h1>Sprint Report</h1>
+    <div class="sub">Rovo → revisão → slides → vídeo</div>
+    <div id="sessionBadge" class="badge bad">Sem sessão</div>
+    <p class="sub" id="jiraUrl"></p>
+    <p class="sub">Faça login no Chromium. O cookie é extraído sozinho. Sem telemetria.</p>
+    <div class="row" style="flex-direction:column">
+      <button class="primary" id="btnLogin">Fazer login no Jira</button>
+      <button id="btnRelogin">Trocar conta / relogar</button>
+    </div>
+    <div id="sideMsg" class="msg hidden"></div>
+  </aside>
+
+  <main>
+    <div id="progressPanel" class="progress-panel hidden">
+      <div class="progress-head">
+        <span id="progressLabel">Processando...</span>
+        <strong id="progressPct">0%</strong>
+      </div>
+      <div class="progress-track">
+        <div id="progressBar" class="progress-bar" style="width:0%"></div>
+      </div>
+      <div id="progressDetail" class="progress-detail"></div>
+    </div>
+
+    <nav class="steps">
+      <button data-step="0" class="active">1. Relatório</button>
+      <button data-step="1">2. Revisar</button>
+      <button data-step="2">3. Slides</button>
+      <button data-step="3">4. Vídeo</button>
+    </nav>
+
+    <section id="step0" class="panel">
+      <h2>Gerar relatório via Rovo</h2>
+      <label for="boardSelect">Board <span class="req">*</span></label>
+      <div class="row">
+        <select id="boardSelect" required>
+          <option value="">Faça login para carregar os boards</option>
+        </select>
+        <button type="button" id="btnReloadBoards">Atualizar boards</button>
+      </div>
+      <p class="sub" id="boardHint">Obrigatório: o Rovo usa o nome do board selecionado para focar a sprint certa.</p>
+      <label for="prompt">Prompt inicial</label>
+      <textarea id="prompt"></textarea>
+      <label for="midSprint">Entraram após o início da sprint (opcional)</label>
+      <textarea id="midSprint" style="min-height:110px" placeholder="Uma por linha, ex.:&#10;CT2-200 — demanda urgente do financeiro&#10;CT2-201 — bug em produção descoberto na review"></textarea>
+      <label for="renegotiations">Renegociações / removidas da sprint (opcional)</label>
+      <textarea id="renegotiations" style="min-height:110px" placeholder="Uma por linha, com o motivo, ex.:&#10;CT2-150 — prioridade mudou para o próximo ciclo&#10;CT2-151 — dependência externa bloqueou; saiu do escopo"></textarea>
+      <div class="row">
+        <button class="primary" id="btnReport">Gerar relatório da sprint</button>
+      </div>
+      <div id="reportPreview" class="report-html hidden"></div>
+    </section>
+
+    <section id="step1" class="panel hidden">
+      <h2>Revisar e pedir mudanças</h2>
+      <label for="reportEdit">Relatório (editável)</label>
+      <textarea id="reportEdit" style="min-height:280px"></textarea>
+      <label for="changeMsg">Pedir mudança ao Rovo</label>
+      <input id="changeMsg" placeholder="Ex.: detalha a PROJ-123 com mais contexto da solução" />
+      <div class="row">
+        <button id="btnSave">Salvar texto</button>
+        <button id="btnRevise">Enviar mudança ao Rovo</button>
+        <button class="primary" id="btnApprove">Aprovar e montar slides</button>
+      </div>
+      <div id="reportHtml" class="report-html"></div>
+    </section>
+
+    <section id="step2" class="panel hidden">
+      <h2>Slides</h2>
+      <div id="slidesMeta" class="sub"></div>
+      <div class="theme-grid">
+        <label>Fundo <input type="color" id="colorBg" value="#121c30" /></label>
+        <label>Títulos <input type="color" id="colorTitle" value="#f0f4fa" /></label>
+        <label>Texto <input type="color" id="colorBody" value="#a0b0c6" /></label>
+        <label>Destaque <input type="color" id="colorAccent" value="#22a898" /></label>
+        <button type="button" id="btnThemeReset">Cores padrão</button>
+      </div>
+      <div id="slidesList" class="slides-list"></div>
+      <div class="row">
+        <button class="primary" id="btnSlides">Gerar PPTX + preview PNG</button>
+        <a class="btn hidden" id="dlPptx" href="#" download>Baixar PPTX</a>
+        <button id="btnGoVideo">Ir para vídeo</button>
+      </div>
+      <div id="previewGrid" class="preview-grid"></div>
+    </section>
+
+    <section id="step3" class="panel hidden">
+      <h2>Vídeo narrado</h2>
+      <p class="sub">A geração roda no servidor — pode fechar a aba e voltar depois; use o status abaixo.</p>
+      <label for="voice">Voz TTS</label>
+      <select id="voice"></select>
+      <div class="row">
+        <button class="primary" id="btnVideo">Gerar áudio + vídeo MP4</button>
+        <a class="btn hidden" id="dlVideo" href="#" download>Baixar MP4</a>
+        <a class="btn hidden" id="dlPptx2" href="#" download>Baixar PPTX</a>
+      </div>
+      <div id="jobStatus" class="job"></div>
+      <video id="player" class="hidden" controls></video>
+    </section>
+
+    <div id="mainMsg" class="msg hidden"></div>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

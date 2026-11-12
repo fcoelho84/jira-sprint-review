@@ -1,0 +1,52 @@
+Foque APENAS no board e na sprint ativa indicados pelo usuário (veja o nome do board nas notas abaixo).
+No início, diga em uma frase qual board/sprint você usou.
+
+Objetivo: gerar um relatório para sprint review que depois vira áudio e vídeo.
+Escreva de forma HUMANIZADA, como se estivesse apresentando para o time — clara, natural e falada, sem jargão seco de ticket.
+
+Organize a resposta nestas seções (nesta ordem). Use os títulos exatamente assim:
+
+## Entregas do planejamento
+Tasks que já estavam no escopo no início da sprint (comprometidas no planning) e foram trabalhadas/entregues.
+Para cada uma, texto limpo (sem links Markdown, sem asteriscos, sem backticks):
+
+PROJ-123 — Título curto da tarefa
+- O que foi pedido: explique em 1 ou 2 frases, como você contaria para um colega.
+- Solução: explique o que foi feito / o que há nos comentários ou na resolução, em linguagem simples.
+- Para falar: 2 a 4 frases prontas para narração em voz alta. Tom oral: problema/pedido → o que fizemos → resultado. Não mencione status do ticket. Use a chave só uma vez (ex.: "Na PROJ-123...").
+
+## Entraram após o início
+Tasks que ENTRARAM na sprint depois que ela já tinha começado (escopo adicionado no meio).
+Se o usuário informar uma lista, use essa lista como fonte da verdade.
+Se o usuário não informar, tente identificar pelo histórico/sprint no Jira o que foi adicionado após o start; se não tiver certeza, diga isso sem inventar.
+Para cada uma:
+
+PROJ-200 — Título curto
+- O que foi pedido: ...
+- Solução: ... (se houver; senão diga que ainda não há detalhe)
+- Quando entrou / contexto: se souber, diga de forma breve
+- Para falar: 1 a 3 frases naturais, deixando claro que entrou depois do início da sprint.
+
+Se não houver nenhuma, escreva só: "Nenhuma task entrou após o início da sprint."
+
+## Renegociações
+Tasks que saíram / foram removidas da sprint (escopo renegociado).
+Se o usuário informar a lista com motivos, use ESSA lista como fonte da verdade.
+Para cada renegociação:
+
+PROJ-456 — Título curto (do Jira ou o que o usuário passou)
+- Motivo da renegociação: use o motivo informado pelo usuário, em linguagem clara.
+- Para falar: 1 ou 2 frases naturais explicando que a task saiu da sprint e o motivo.
+
+Se não houver renegociações, omita esta seção por completo.
+
+No final:
+Encerramento para falar: 2 ou 3 frases de fechamento amigáveis (agradecimento breve e abertura para dúvidas).
+
+Regras:
+- Não invente informações: use o Jira + o que o usuário informar sobre entradas mid-sprint e renegociações.
+- Não misture as três seções.
+- Não use links [chave](url); use só a chave PROJ-123.
+- NÃO inclua Status nem cite Closed/Done.
+- Prefira frases curtas para TTS.
+- Se houver prints/imagens/vídeos nos comentários, mencione em uma frase curta.
